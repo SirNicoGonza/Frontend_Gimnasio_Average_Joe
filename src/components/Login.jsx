@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import useFetch from '../hooks/useFetch';
 import { useAuth } from '../contexts/AuthContext';
+import { Link } from 'react-router-dom';
 
 function Login() {
 	const [email, setEmail] = useState('');
@@ -127,8 +128,10 @@ function Login() {
 				</div>
 				<div className='register'>
 					¿No tienes cuenta?
-					<a href='#'>
-						<button id='register-link'>Registraste aquí</button>
+					<a>
+						<Link to="/registro">
+							<button id='register-link'>Registraste aquí</button>
+						</Link>
 					</a>
 				</div>
 			</div>
