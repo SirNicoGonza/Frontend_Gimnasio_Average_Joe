@@ -1,77 +1,55 @@
-.container {
-    display: grid;
-    grid-template-rows: 80px auto 1fr auto 50px;
-    grid-template-columns: 1fr 4fr 1fr;
-    height: 100vh;
-    grid-template-areas:
-        "header header header"
-        "left-aside banner right-aside"
-        "left-aside main right-aside"
-        "left-aside low-content right-aside"
-        "footer footer footer";
-    grid-gap: 10px; padding: 10px;
-    font-weight: 600; font-size: 20px;
-    justify-content: space-between;
+  /* Contenido principal */
+  .maindiv {
+    display: flex;
+    flex-direction: column;
     align-items: center;
-}
+    justify-content: center;
+    flex-direction: column;
+    gap: 20px;
+    background-color: #303030;
+    padding: 30px;
+    border: #61bd3d;
+  }
+  
+  /* Título del gimnasio */
+  .gymname {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+    background-color: #303030;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 3rem;
+    color: #4e9631;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  }
 
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color:rgb(15, 2, 2);
-}
-
-header {
-    background: #333;
-    color: #fff;
-    padding: 10px 0;
-    text-align: center;
-}
-
-nav ul {
-    list-style: none;
-    padding: 0;
-}
-
-nav ul li {
-    display: inline;
-    margin: 0 15px;
-}
-
-nav ul li a {
-    color: #fff;
-    text-decoration: none;
-}
-
-#hero {
-    background: #007BFF;
-    color: #fff;
-    padding: 50px 20px;
-    text-align: center;
-}
-
-.cta-button {
-    background: #fff;
-    color: #007BFF;
+  .parrofo1 {
+    font-size: 1rem;
+    color: #61bd3d;
+  }
+  
+  /* Botones */
+  .botonprincipal {
+    background-color:  #222121;
+    color: white;
+    border: none;
     padding: 10px 20px;
-    text-decoration: none;
     border-radius: 5px;
-}
-
-section {
-    padding: 20px;
-    margin: 20px;
-    background: #fff;
-    border-radius: 5px;
-}
-
-footer {
-    text-align: center;
-    padding: 10px 0;
-    background: #333;
-    color: #fff;
-    position: relative;
-    bottom: 0;
-    width: 100%;
-}
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+  }
+  
+  .botonprincipal:hover {
+    background-color: #3a6f25;
+  }
+  
