@@ -4,6 +4,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import useFetch from '../hooks/useFetch';
 import { useAuth } from '../contexts/AuthContext';
 import { Link } from 'react-router-dom';
+import './Estilo.css'
 
 function Login() {
 	const [email, setEmail] = useState('');
@@ -12,9 +13,10 @@ function Login() {
 	const [errorMensaje, setErrorMensaje] = useState('');
 
 	const [{ data, error, isLoading }, doFetch] = useFetch(
-		`${import.meta.env.VITE_API_URL}/user/login/`,
+		`http://127.0.0.1:5000/user/login`,
 		{
 			method: 'POST',
+			mode: 'cors',
 			body: JSON.stringify({
 				email: email,
 				password: password,
@@ -54,22 +56,24 @@ function Login() {
 	};
 
 	const handleSubmit = (e) => {
+		
 		e.preventDefault();
 		setTriggerFetch(true);
-		doFetch();
+		navigate("/perfil");
+		//doFetch();
 	};
 
 	return (
-		<>
-			<h1 id='maintitle'>Average Joe</h1>
+		<div>
+			<h1 className='gymname'>Average Joe</h1>
 			<br />
 			<div id='container-login'>
 				<link
 					href='https://fonts.googleapis.com/icon?family=Material+Icons'
 					rel='stylesheet'
 				/>
-				<div id='title'>
-					<i className='material-icons lock'>lock</i> Login
+				<div className='titlenormal'>
+					<i className='material-icons lock'>lock</i> <h2>Login</h2>
 				</div>
 
 				<form id='login-form' onSubmit={handleSubmit}>
@@ -110,7 +114,7 @@ function Login() {
 					</div>
 					<br />
 					<div className='form-group'>
-						<button type='submit' className='my-button'>
+						<button className='btn1' type='submit'>
 							Iniciar Sesión
 						</button>
 						{isLoading && triggerFetch && <p>Cargando...</p>}
@@ -126,16 +130,16 @@ function Login() {
 				<div className='privacy'>
 					<a href='#'>Politias de privacidad</a>
 				</div>
-				<div className='register'>
+				<div className='titlenormal'>
 					¿No tienes cuenta?
 					<a>
 						<Link to="/registro">
-							<button id='register-link'>Registraste aquí</button>
+							<button className='btn1'>Registraste aquí</button>
 						</Link>
 					</a>
 				</div>
 			</div>
-		</>
+		</div>
 	);
 }
 

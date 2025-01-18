@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import './Estilo.css'
 
 const RegistrationForm = () => {
   const [formData, setFormData] = useState({
-    firstname: '',
-    lastname: '',
+    nombre: '',
+    apellido: '',
     email: '',
-    password: ''
+    password: '',
+    rol: 'socio',
   });
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
@@ -23,7 +25,7 @@ const RegistrationForm = () => {
     setLoading(true);
 
     // Validación de campos
-    if (!formData.firstname || !formData.lastname || !formData.email || !formData.password) {
+    if (!formData.nombre || !formData.apellido || !formData.email || !formData.password) {
       setError('Todos los campos son obligatorios.');
       setLoading(false);
       return;
@@ -36,7 +38,7 @@ const RegistrationForm = () => {
     }
 
     try {
-      const response = await fetch(`http://127.0.0.1:5000/user/registro/`, {
+      const response = await fetch(`http://127.0.0.1:5000/user/registro`, {
         method: 'POST',
         mode: 'cors',
         headers: {
@@ -63,14 +65,15 @@ const RegistrationForm = () => {
 
   return (
     <div className="form-container">
-      <h2>Crear una cuenta</h2>
+      <h1 className='gymname'>Average Joe</h1>
+      <h2 className='titlenormal'>Crear una cuenta</h2>
       <form onSubmit={handleSubmit}>
         <div>
           <label>Nombre:</label>
           <input
             type="text"
-            name="firstname"
-            value={formData.firstname}
+            name="nombre"
+            value={formData.nombre}
             onChange={handleChange}
             required
           />
@@ -79,8 +82,8 @@ const RegistrationForm = () => {
           <label>Apellido:</label>
           <input
             type="text"
-            name="lastname"
-            value={formData.lastname}
+            name="apellido"
+            value={formData.apellido}
             onChange={handleChange}
             required
           />
@@ -108,7 +111,7 @@ const RegistrationForm = () => {
 
         {error && <p style={{ color: 'red' }}>{error}</p>}
 
-        <button type="submit" disabled={loading}>
+        <button className='btn1' type="submit" disabled={loading}>
           {loading ? 'Registrando...' : 'Registrar'}
         </button>
       </form>

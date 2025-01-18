@@ -19,7 +19,6 @@ function reducer(state, action) {
             return {
                 ...state,
                 token: action.payload,
-                token: localStorage.getItem('token'),
                 isAuthenticated: true,
             };
         case ACTIONS.LOGOUT:
