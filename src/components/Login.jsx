@@ -59,8 +59,7 @@ function Login() {
 		
 		e.preventDefault();
 		setTriggerFetch(true);
-		navigate("/perfil");
-		//doFetch();
+		doFetch();
 	};
 
 	return (
