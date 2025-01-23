@@ -1,65 +1,63 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import './Estilo.css'
 
-const RegistrationForm = ({ type }) => {
+const RegistrationForm = () => {
   const [formData, setFormData] = useState({
-    firstname: '',
-    lastname: '',
+    nombre: '',
+    apellido: '',
     email: '',
-    passwords: ''
+    password: '',
+    rol: 'socio',
   });
-  const [error, setError] = useState(null);
+  const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: value
-    }));
+    setFormData({ ...formData, [name]: value });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setError('');
     setLoading(true);
-    setError(null);
 
-    // Validaciones básicas
-    if (!formData.firstname || !formData.lastname || !formData.email || !formData.passwords) {
-      setError("Los campos nombre, apellido, email y contraseña son obligatorios.");
-      setLoading(false);
-      return;
-    }
-    if (!formData.email.includes('@')) {
-      setError("El correo electrónico debe ser válido.");
+    // Validación de campos
+    if (!formData.nombre || !formData.apellido || !formData.email || !formData.password) {
+      setError('Todos los campos son obligatorios.');
       setLoading(false);
       return;
     }
 
-    // Aquí podrías ajustar la URL dependiendo si es cliente o empleado
-    const endpoint = type === 'cliente' ? '/api/clientes' : '/api/empleados';
+    if (!/\S+@\S+\.\S+/.test(formData.email)) {
+      setError('Ingresa un correo válido.');
+      setLoading(false);
+      return;
+    }
 
     try {
-      const response = await fetch(endpoint, {
+      const response = await fetch(`http://127.0.0.1:5000/user/registro`, {
         method: 'POST',
+        mode: 'cors',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(formData),
       });
-
+     
       const data = await response.json();
 
       if (response.ok) {
-        // Redirige al login si la creación es exitosa
+        alert('Registro exitoso. Redirigiendo al login...');
         navigate('/login');
       } else {
-        // Manejo de errores desde el backend (ej. usuario duplicado)
-        setError(data.message || "Ocurrió un error al registrar.");
+        setError(data.message || 'Error al registrar.');
       }
     } catch (error) {
-      setError("Error al conectar con el servidor.");
+      console.error('Error de conexión:', error);
+      setError('Error al conectar con el servidor.');
     } finally {
       setLoading(false);
     }
@@ -67,14 +65,15 @@ const RegistrationForm = ({ type }) => {
 
   return (
     <div className="form-container">
-      <h2>Registro {type === 'cliente' ? 'Cliente' : 'Empleado'}</h2>
+      <h1 className='gymname'>Average Joe</h1>
+      <h2 className='titlenormal'>Crear una cuenta</h2>
       <form onSubmit={handleSubmit}>
         <div>
           <label>Nombre:</label>
           <input
             type="text"
-            name="firstname"
-            value={formData.firstname}
+            name="nombre"
+            value={formData.nombre}
             onChange={handleChange}
             required
           />
@@ -83,8 +82,8 @@ const RegistrationForm = ({ type }) => {
           <label>Apellido:</label>
           <input
             type="text"
-            name="lastname"
-            value={formData.lastname}
+            name="apellido"
+            value={formData.apellido}
             onChange={handleChange}
             required
           />
@@ -103,14 +102,16 @@ const RegistrationForm = ({ type }) => {
           <label>Contraseña:</label>
           <input
             type="password"
-            name="passwords"
-            value={formData.passwords}
+            name="password"
+            value={formData.password}
             onChange={handleChange}
             required
           />
         </div>
-        {error && <p className="error">{error}</p>}
-        <button type="submit" disabled={loading}>
+
+        {error && <p style={{ color: 'red' }}>{error}</p>}
+
+        <button className='btn1' type="submit" disabled={loading}>
           {loading ? 'Registrando...' : 'Registrar'}
         </button>
       </form>
@@ -119,3 +120,4 @@ const RegistrationForm = ({ type }) => {
 };
 
 export default RegistrationForm;
+ 

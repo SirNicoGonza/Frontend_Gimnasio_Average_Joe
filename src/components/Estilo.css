@@ -1,0 +1,76 @@
+.gymname {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+    background-color: #303030;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 3rem;
+    color: #4e9631;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  }
+
+.form-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 20px;
+    background-color: #303030;
+    padding: 30px;
+    border: #61bd3d;
+}
+
+.titlenormal {
+    font-size: 1rem;
+    color: #61bd3d;
+}
+
+label {
+    font-size:  1rem;
+    padding: auto;
+    margin: 10px;
+    color:aliceblue;
+}
+
+input {
+    padding: 10px;
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    transition: border-color 0.3s ease; /* Transición para el color del borde */
+    box-sizing: border-box;
+    
+}
+
+input:focus {
+    outline: none;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    border-color: #007bff
+}
+
+.btn1{
+    background-color:  #222121;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin: 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.btn1:hover {
+     background-color: #3a6f25;
+}
