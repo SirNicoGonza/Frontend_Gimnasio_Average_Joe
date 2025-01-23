@@ -1,198 +1,73 @@
-import { useEffect, useState } from "react";
-import useFetch from "../hooks/useFetch";
-import { useAuth } from "../contexts/AuthContext";
+import React, { useState, useEffect } from 'react';
+import { useAuth } from '../contexts/AuthContext';
+import { useNavigate } from 'react-router-dom';
 
+const Perfil = () => {
+  const { state } = useAuth(); // Obtén el estado del contexto
+  const { token } = state; // Desestructura el token
+  const [usuario, setUsuario] = useState(null); // Estado para guardar los datos del usuario
+  const [loading, setLoading] = useState(true); // Para mostrar un indicador de carga
+  const [error, setError] = useState(null); // Para manejar errores
+  const navigate = useNavigate(); // Para redirigir al usuario si no está logueado
 
-// Componente que genera el Perfil del Usuario.
-function Perfil() {
-    const {token} = useAuth("state");
-    const [editMode, setEditMode] = useState(false);
-    const [dataUser, setDataUser] = useState({
-        user__id: "",
-        first_name: "",
-        last_name: "",
-        email: "",
-        bio: "",
-        image: "",
-        username: ""
-    });
-    const [mensajeExito, setMensajeExito] = useState(false);
-    const [ idUser, setIdUser]= useState("");
-
-    //Trae los datos del usuario logueado.
-    const [{data, isError, isLoading}, doFetch] = useFetch(
-        `http://127.0.0.1:5000/users/profiles`,
-        {
-            method: "GET",
-            headers: {
-                Authorization: `Token ${token}`,
-            },
-        }
-    )
-
-    useEffect(()=>{
-        doFetch();
-    }, []);
-
-    useEffect(()=>{
-        if(data){
-            setDataUser(data);
-            setIdUser(data.user__id);
-        }
-    }, [data]);
-
-    function handleEditClic (){
-        setEditMode(!editMode);
-    };
-    
-    //Guarda los datos si es que se editaron
-    const handleGuardar= async ()=> { fetch(
-        `${import.meta.env.VITE_API_BASE_URL}/users/profiles/${data.user__id}/`,
-        {
-            method: "PATCH",
-            headers: {
-                "Content-Type": "application/json",
-                Authorization: `Token ${token}`,
-            },
-            body: JSON.stringify({
-                first_name: dataUser.first_name,
-                last_name: dataUser.last_name,
-                email: dataUser.email,
-                bio: dataUser.bio
-            }),
-        })
-            .then((response)=>{
-                if(!response.ok){
-                    throw new Error("No se pudo actualizar el usuario.")
-                }
-                return response.json();
-            })
-            .then((data)=> {
-                if(data){
-                    setDataUser(data);
-                }
-            })
-            .catch(()=> {
-                console.error("error al actualizar");  
-            })
-
-        // cirra el editMode
-        setEditMode(false);
-
-        //muestra mensaje
-        setMensajeExito(true);
-
-        setTimeout(()=> {
-            setMensajeExito(false);
-        }, 3000);
-    };
-    
-    const handleCambios= (e) =>{
-        setDataUser({
-            ...dataUser,
-            [e.target.name]: e.target.value
-        })
+  useEffect(() => {
+    // Verificar si hay un token de autenticación
+    if (!token) {
+      navigate('/login'); // Redirigir al login si no hay token
+      return;
     }
 
-    function handleSubmit(event){
-        event.preventDefault();
-    }
+    // Si hay token, hacer una solicitud al backend para obtener el perfil del usuario
+    const fetchUserProfile = async () => {
+      try {
+        const response = await fetch('http://127.0.0.1:5000/user/perfil', {
+          method: 'GET',
+          headers: {
+            Authorization: `Bearer ${token}`, // Enviar el token en el encabezado
+          },
+        });
 
-    //Verifica si hay carga o error
-    if(isLoading) return <p>Cargando...</p>;
-    if(isError) return <p>Error al cargar los datos</p>;
+        if (response.ok) {
+          const data = await response.json();
+          setUsuario(data); // Guardar los datos del usuario en el estado
+        } else {
+          console.error('Error al obtener los datos del perfil');
+          setError('No se pudo cargar el perfil. Por favor, intenta nuevamente.');
+        }
+      } catch (error) {
+        console.error('Error en la solicitud:', error);
+        setError('Hubo un problema de red. Por favor, verifica tu conexión.');
+      } finally {
+        setLoading(false); // Finalizar la carga
+      }
+    };
 
-    return (
-        <div className="card">
-            { data? (
-                <>
-                    <div className="content-card">
-                        <div>
-                            <div className="content-figura"> 
-                                <figure className="circular-form">
-                                    <img 
-                                        src={data.image || 
-                                            imagen
-                                        } 
-                                        alt="Profile image"
-                                    />
-                                </figure>
-                            </div>
-                            <div className="userName">
-                                <p>{dataUser.username}</p>
-                            </div>
-                        </div>
-                        <div>
-                            <form className="content" onSubmit={handleSubmit}>
-                                <div className="content-datos">
-                                    <p className="lable">Nombre</p>
-                                    {editMode? (
-                                        <input
-                                            type="text"
-                                            name="first_name"
-                                            value={dataUser.first_name}
-                                            onChange={handleCambios}
-                                        />
-                                        ):(<p className="data">{dataUser.first_name}</p>)}                                
-                                    <p className="lable">Apellido</p>
-                                    {editMode? (
-                                        <input
-                                            type="text"
-                                            name="last_name"
-                                            value={dataUser.last_name}
-                                            onChange={handleCambios}
-                                        />
-                                    ):(<p className="data">{dataUser.last_name}</p>)}
-                                    <br />
-                                    <p className="lable">Email:</p>
-                                    {editMode? (
-                                        <input
-                                            type="email"
-                                            name="email"
-                                            value={dataUser.email}
-                                            onChange={handleCambios}
-                                        />
-                                        ):(<p className="data">{dataUser.email}</p>)}
-                                    <br />
-                                    <div className="content-bio">
-                                        <p className="lable">Bio:</p>
-                                        {editMode ? (
-                                            <textarea
-                                                name="bio"
-                                                value={dataUser.bio}
-                                                onChange={handleCambios}
-                                            />
-                                            ): (<p className="data">{dataUser.bio}</p>)}
-                                    </div>
-                                    <br />
-                                    <br />
-                                    <button
-                                        className="button-edit"
-                                        onClick={handleEditClic}
-                                    >
-                                        {!editMode ? "Editar" : "Salir"}
-                                    </button>
-                                    {editMode? (
-                                        <button
-                                            className="button-edit"
-                                            onClick={handleGuardar}
-                                        >
-                                            Guardar
-                                        </button>
-                                    ):("")}
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                    <div>
-                        {mensajeExito && (
-                            <p className="success-message">Datos guardados con exitos</p>
-                        )}
-                    </div>
-                </>
-            ):(<p className="data">No se encontraron datos del usuario.</p>)}
-        </div>
-    );
+    fetchUserProfile();
+  }, [token, navigate]);
+
+  if (loading) {
+    return <div>Cargando perfil...</div>; // Mostrar un mensaje de carga
+  }
+
+  if (error) {
+    return <div>{error}</div>; // Mostrar un mensaje de error
+  }
+
+  if (!usuario) {
+    return <div>No se pudo cargar el perfil.</div>; // En caso de que no haya datos del usuario
+  }
+
+  return (
+    <div>
+      <h1>Perfil del Usuario</h1>
+      <div>
+        <p><strong>Nombre:</strong> {usuario.nombre}</p>
+        <p><strong>Apellido:</strong> {usuario.apellido}</p>
+        <p><strong>Email:</strong> {usuario.email}</p>
+        {/* Puedes agregar más datos si están disponibles */}
+      </div>
+    </div>
+  );
 };
 
 export default Perfil;
