@@ -1,0 +1,80 @@
+/* Estilos globales */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+/* Contenedor principal */
+.login-container {
+  background: white;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  width: 100%;
+  max-width: 400px;
+}
+
+/* Título */
+.login-container h1 {
+  margin-bottom: 1.5rem;
+  color: #333;
+}
+
+/* Formulario */
+.login-form {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Etiquetas y campos */
+.login-form label {
+  text-align: left;
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+  color: #333;
+}
+
+.login-form input {
+  padding: 0.8rem;
+  margin-bottom: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+/* Botón */
+.login-form button {
+  background-color: #007BFF;
+  color: white;
+  border: none;
+  padding: 0.8rem;
+  border-radius: 4px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.login-form button:hover {
+  background-color: #0056b3;
+}
+
+/* Enlace */
+.login-container p {
+  margin-top: 1rem;
+}
+
+.login-container a {
+  color: #007BFF;
+  text-decoration: none;
+}
+
+.login-container a:hover {
+  text-decoration: underline;
+}
+

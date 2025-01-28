@@ -1,0 +1,151 @@
+/* General */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f9;
+  color: #333;
+}
+
+/* Encabezado */
+.main-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #0066cc;
+  color: white;
+  padding: 1rem 2rem;
+}
+
+.main-header .logo h1 {
+  font-size: 1.8rem;
+  margin: 0;
+}
+
+.main-nav ul {
+  list-style: none;
+  display: flex;
+  gap: 1rem;
+  margin: 0;
+  padding: 0;
+}
+
+.main-nav ul li {
+  position: relative;
+}
+
+.main-nav ul li a {
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  transition: background-color 0.3s;
+}
+
+.main-nav ul li a:hover {
+  background-color: #005bb5;
+}
+
+/* Menú desplegable */
+.dropdown:hover .dropdown-menu {
+  display: block;
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  background-color: white;
+  color: #333;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  border-radius: 0.5rem;
+  list-style: none;
+  padding: 0.5rem 0;
+  top: 100%;
+  left: 0;
+  z-index: 1000;
+}
+
+.dropdown-menu li {
+  margin: 0;
+}
+
+.dropdown-menu li a {
+  color: #333;
+  padding: 0.5rem 1rem;
+  display: block;
+  text-decoration: none;
+  transition: background-color 0.3s;
+}
+
+.dropdown-menu li a:hover {
+  background-color: #f4f4f9;
+}
+
+/* Contenido principal */
+.main-content {
+  text-align: center;
+  padding: 2rem 1rem;
+}
+
+.main-content h2 {
+  font-size: 2rem;
+  color: #0066cc;
+  margin-bottom: 1rem;
+}
+
+.card-container {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  padding: 1rem;
+}
+
+.card {
+  background: white;
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  padding: 1rem;
+  width: 250px;
+  text-align: center;
+}
+
+.card h3 {
+  color: #0066cc;
+}
+
+.card button {
+  background-color: #0066cc;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  margin-top: 1rem;
+  transition: background-color 0.3s;
+}
+
+.card button:hover {
+  background-color: #005bb5;
+}
+
+/* Pie de página */
+.main-footer {
+  text-align: center;
+  padding: 1rem;
+  background-color: #333;
+  color: white;
+  font-size: 0.9rem;
+}
+
+.main-footer a {
+  color: #00ccff;
+  text-decoration: none;
+}
+
+.main-footer a:hover {
+  text-decoration: underline;
+}
+
+
