@@ -4,10 +4,11 @@ import "../ui/NavBar.css";
 
 function NavBar({ appName }) {
 
-    const {login}= useAuth("actions");
+    const {actions} = useAuth();
+    const {logout}= actions;
     
     const handleClick= (e) => {
-        login();
+        logout();
     };
 
     return (
@@ -23,7 +24,8 @@ function NavBar({ appName }) {
             >
                 <NavMenu
                     items={[
-                        {text:"Home", url:"/home"}
+                        {text:"Perfil", url:"/perfil"},
+                        {text: "Planes", url: "/planes"}
                     ]} 
                 />
             </nav>

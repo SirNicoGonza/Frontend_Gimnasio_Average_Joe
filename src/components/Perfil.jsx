@@ -20,7 +20,7 @@ const Perfil = () => {
     // Si hay token, hacer una solicitud al backend para obtener el perfil del usuario
     const fetchUserProfile = async () => {
       try {
-        const response = await fetch('http://127.0.0.1:5000/user/perfil', {
+        const response = await fetch('http://127.0.0.1:5000/user/profile', {
           method: 'GET',
           headers: {
             Authorization: `Bearer ${token}`, // Enviar el token en el encabezado
@@ -29,7 +29,7 @@ const Perfil = () => {
 
         if (response.ok) {
           const data = await response.json();
-          setUsuario(data); // Guardar los datos del usuario en el estado
+          setUsuario(data.profile); // Guardar los datos del usuario en el estado
         } else {
           console.error('Error al obtener los datos del perfil');
           setError('No se pudo cargar el perfil. Por favor, intenta nuevamente.');
@@ -61,10 +61,10 @@ const Perfil = () => {
     <div>
       <h1>Perfil del Usuario</h1>
       <div>
-        <p><strong>Nombre:</strong> {usuario.nombre}</p>
-        <p><strong>Apellido:</strong> {usuario.apellido}</p>
+        <p><strong>Nombre:</strong> {usuario.firstname}</p>
+        <p><strong>Apellido:</strong> {usuario.lastname}</p>
         <p><strong>Email:</strong> {usuario.email}</p>
-        {/* Puedes agregar más datos si están disponibles */}
+        <p><strong>Tu plan:</strong> {usuario.plan}</p>
       </div>
     </div>
   );

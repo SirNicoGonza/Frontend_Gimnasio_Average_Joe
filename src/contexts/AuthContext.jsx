@@ -16,14 +16,14 @@ function reducer(state, action) {
       return {
         ...state,
         token: action.payload.token,
-        rol: action.payload.rol,
+        role: action.payload.role,
         isAuthenticated: true,
       };
     case ACTIONS.LOGOUT:
       return {
-        isAuthenticated: false,
         token: null,
-        rol: null,
+        role: null,
+        isAuthenticated: false,
       };
     default:
       return state;
@@ -32,23 +32,23 @@ function reducer(state, action) {
 
 function AuthProvider({ children }) {
   const [state, dispatch] = useReducer(reducer, {
-    token: localStorage.getItem("authToken"),
-    rol: localStorage.getItem("authRol"),
+    token: localStorage.getItem("authToken") || null,
+    role: localStorage.getItem("authRole") || null,
     isAuthenticated: !!localStorage.getItem("authToken"),
   });
 
-  const login = useCallback((token, rol) => {
-    console.log("Actualizando estado de autenticación..."); 
-    dispatch({ type: ACTIONS.LOGIN, payload: { token, rol } });
+  const login = useCallback((token, role) => {
+    console.log("Actualizando estado de autenticación...");
+    dispatch({ type: ACTIONS.LOGIN, payload: { token, role } });
     localStorage.setItem("authToken", token);
-    localStorage.setItem("authRol", rol);
-    console.log("Estado de autenticación actualizado:", { token, rol }); // Depuración
+    localStorage.setItem("authRole", role);
+    console.log("Estado de autenticación actualizado:", { token, role });
   }, []);
 
   const logout = useCallback(() => {
     dispatch({ type: ACTIONS.LOGOUT });
     localStorage.removeItem("authToken");
-    localStorage.removeItem("authRol");
+    localStorage.removeItem("authRole"); // Cambiado a "authRole"
   }, []);
 
   return (

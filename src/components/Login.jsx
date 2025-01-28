@@ -36,8 +36,8 @@ function Login() {
 	if (data) {
 	  console.log("Respuesta de la API:", data); // Verifica la estructura de data
 	  const token = data.token;
-	  const rol = data.rol;
-	  login(token, rol); // Actualiza el estado y el localStorage
+	  const role = data.role;
+	  login(token, role); // Actualiza el estado y el localStorage
 	  console.log("Redirigiendo a:", from); // Verifica la ruta de destino
 	  navigate(from, { replace: true }); // Redirige después del login
 	  console.log("Redirección ejecutada")

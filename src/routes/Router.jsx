@@ -6,23 +6,23 @@ import Principal from "../components/ui/Principal";
 import Login from "../components/Login";
 import Perfil from "../components/Perfil";
 import RegistrationForm from "../components/Registro";
+import PlanesList from "../components/Planes/PlanesList";
+import NewPlan from "../components/Planes/NewPlan";
+import EditPlan from "../components/Planes/EditPlanes";
 import NotFound from "../components/NotFound";
 
 const Router = createBrowserRouter([
   {
     path: "/",
-    element: (
-      <ProtectedRoute> {/* Protege la ruta raíz */}
+    element: 
         <Principal />
-      </ProtectedRoute>
-    ),
   },
   {
     path: "registro",
     element: <RegistrationForm />,
   },
   {
-    element: <LayoutSinNav />, // Layout sin barra de navegación
+    element: <LayoutSinNav />,
     children: [
       {
         path: "login",
@@ -31,7 +31,7 @@ const Router = createBrowserRouter([
     ],
   },
   {
-    element: <Layout />, // Layout con barra de navegación
+    element: <Layout />,
     children: [
       {
         path: "perfil",
@@ -45,12 +45,28 @@ const Router = createBrowserRouter([
         path: "planes",
         element: (
           <ProtectedRoute>
-            <h1>Página de Planes</h1> {/* Reemplaza con el componente correcto */}
+            <PlanesList />
           </ProtectedRoute>
         ),
       },
       {
-        path: "*", // Ruta para páginas no encontradas
+        path: "planes/newplan",
+        element: (
+          <ProtectedRoute>
+            <NewPlan />
+          </ProtectedRoute>
+        )
+      },
+      {
+        path: "planes/editar/:id",
+        element : (
+          <ProtectedRoute>
+            <EditPlan />
+          </ProtectedRoute>
+        )
+      },
+      {
+        path: "*", 
         element: <NotFound />,
       },
     ],
