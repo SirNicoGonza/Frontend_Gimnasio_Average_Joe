@@ -1,8 +1,8 @@
 import { useNavigate } from "react-router-dom";
 
 function CardPlan({ plan, rol, isAuthenticated, token, onDeletePlan }) { 
-  const id = plan.id_plan; // Asegúrate de que `id_plan` existe
-  const userType = rol; // Rol del usuario
+  const id = plan.id_plan;
+  const userType = rol;
   const navigate = useNavigate();
 
   const handlePlanSelect =  async (e) => {

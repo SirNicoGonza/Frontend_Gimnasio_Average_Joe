@@ -25,7 +25,8 @@ function NavBar({ appName }) {
                 <NavMenu
                     items={[
                         {text:"Perfil", url:"/perfil"},
-                        {text: "Planes", url: "/planes"}
+                        {text: "Planes", url: "/planes"},
+                        {text: "Actividades", url: "/actividades"}
                     ]} 
                 />
             </nav>
