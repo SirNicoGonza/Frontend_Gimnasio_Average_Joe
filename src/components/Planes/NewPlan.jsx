@@ -4,7 +4,7 @@ import { useAuth } from "../../contexts/AuthContext";
 import useFetch from "../../hooks/useFetch";
 
 function NewPlan() {
-    const { token } = useAuth(); // Llama a useAuth como una función
+    const { token } = useAuth(); 
     const navigate = useNavigate();
     const [nombre, setNombre] = useState('');
     const [precio, setPrecio] = useState('');
@@ -24,15 +24,13 @@ function NewPlan() {
             gracia: gracia,
         });
 
-        console.log(body);
-
         doFetch({
             method: 'POST',
             headers: {
                 Authorization: `Bearer ${token}`,
-                'Content-Type': 'application/json', // Envía los datos como JSON
+                'Content-Type': 'application/json',
             },
-            body: body, // Envía el cuerpo como JSON
+            body: body,
         });
     };
 

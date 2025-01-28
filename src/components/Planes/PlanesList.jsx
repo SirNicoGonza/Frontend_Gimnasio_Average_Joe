@@ -10,7 +10,6 @@ function PlanesList() {
     const {state} = useAuth()
     const {token, role, isAuthenticated} = state
     const navigate = useNavigate();
-    console.log("ROL:"+ role + " , isAuthenticated: "+ isAuthenticated);
 
     const [{data, isError, isLoading}, doFetch] = useFetch(
         `${import.meta.env.VITE_API_URL}/planes`,

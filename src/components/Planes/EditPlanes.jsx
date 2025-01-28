@@ -4,7 +4,7 @@ import { useAuth } from "../../contexts/AuthContext";
 import useFetch from "../../hooks/useFetch";
 
 function EditPlan() {
-  const { id } = useParams(); // Extrae el ID del plan de la URL
+  const { id } = useParams();
   const { state } = useAuth();
   const { token } = state;
   const navigate = useNavigate();
@@ -21,7 +21,7 @@ function EditPlan() {
   
   // Obtener los datos del plan actual
   const [{ data: planData, isLoading: isLoadingPlan, isError: isErrorPlan }, fetchPlan] = useFetch(
-    `${import.meta.env.VITE_API_URL}/planes/${id}`, // Usa el ID en la URL
+    `${import.meta.env.VITE_API_URL}/planes/${id}`, 
     {
       method: "GET",
       headers: {
@@ -38,7 +38,7 @@ function EditPlan() {
     if(planData) {
         setNombre(planData.nombre || "");
         setPrecio(planData.precio || "");
-        setDescripcion(planData.descripcion |"");
+        setDescripcion(planData.descripcion ||"");
         setDias_Mes(planData.dias_mes ||"");
         setGracia(planData.gracia || "")
     }
@@ -95,7 +95,7 @@ function EditPlan() {
           <label>Nombre:</label>
           <input
             type="text"
-            value={nombre} // El valor del input se sincroniza con el estado "nombre"
+            value={nombre} 
             onChange={(e) => setNombre(e.target.value)}
             required
           />
@@ -104,7 +104,7 @@ function EditPlan() {
           <label>Precio:</label>
           <input
             type="number"
-            value={precio} // El valor del input se sincroniza con el estado "precio"
+            value={precio}
             onChange={(e) => setPrecio(e.target.value)}
             required
           />
@@ -112,7 +112,7 @@ function EditPlan() {
         <div>
           <label>Descripción:</label>
           <textarea
-            value={descripcion} // El valor del textarea se sincroniza con el estado "descripcion"
+            value={descripcion} 
             onChange={(e) => setDescripcion(e.target.value)}
             required
           />

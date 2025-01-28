@@ -9,7 +9,10 @@ import RegistrationForm from "../components/Registro";
 import PlanesList from "../components/Planes/PlanesList";
 import NewPlan from "../components/Planes/NewPlan";
 import EditPlan from "../components/Planes/EditPlanes";
+import ActividadesList from "../components/Actividades/ActividadesList";
+import NewActividad from "../components/Actividades/NewActividad";
 import NotFound from "../components/NotFound";
+import EditActividades from "../components/Actividades/EditActividades";
 
 const Router = createBrowserRouter([
   {
@@ -62,6 +65,30 @@ const Router = createBrowserRouter([
         element : (
           <ProtectedRoute>
             <EditPlan />
+          </ProtectedRoute>
+        )
+      },
+      {
+        path: "actividades",
+        element: (
+          <ProtectedRoute>
+            <ActividadesList />
+          </ProtectedRoute>
+        )
+      },
+      {
+        path: "actividades/newactividad",
+        element: (
+          <ProtectedRoute>
+            <NewActividad />
+          </ProtectedRoute>
+        )
+      },
+      {
+        path: "actividades/editar/:id",
+        element: (
+          <ProtectedRoute>
+            <EditActividades />
           </ProtectedRoute>
         )
       },
