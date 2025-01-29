@@ -13,6 +13,7 @@ import ActividadesList from "../components/Actividades/ActividadesList";
 import NewActividad from "../components/Actividades/NewActividad";
 import NotFound from "../components/NotFound";
 import EditActividades from "../components/Actividades/EditActividades";
+import Pagos from "../components/Pagos/Pagos";
 
 const Router = createBrowserRouter([
   {
@@ -89,6 +90,14 @@ const Router = createBrowserRouter([
         element: (
           <ProtectedRoute>
             <EditActividades />
+          </ProtectedRoute>
+        )
+      },
+      {
+        path: "pagos",
+        element: (
+          <ProtectedRoute>
+            <Pagos />
           </ProtectedRoute>
         )
       },

@@ -26,7 +26,8 @@ function NavBar({ appName }) {
                     items={[
                         {text:"Perfil", url:"/perfil"},
                         {text: "Planes", url: "/planes"},
-                        {text: "Actividades", url: "/actividades"}
+                        {text: "Actividades", url: "/actividades"},
+                        {text: "Pagos", url: "/pagos"}
                     ]} 
                 />
             </nav>
