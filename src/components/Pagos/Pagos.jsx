@@ -2,10 +2,10 @@ import { useState, useEffect } from "react";
 import { useAuth } from "../../contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
 import useFetch from "../../hooks/useFetch";
+//import "./Pagos.css";
 
 function Pagos() {
     const [socios, setSocios] = useState([]);
-    const [unSocio, setUnSocio] = useState([]);
     const [socioLog, setSocioLog] = useState([]);
     const {state} = useAuth();
     const {token, role, isAuthenticated} = state;
@@ -26,7 +26,6 @@ function Pagos() {
                 setSocios(data.actividades)
             }
         }, [data]);
-        console.log("DATA: " + data);
     };
 
 
@@ -52,10 +51,9 @@ function Pagos() {
     };
 
 
-    const handleClick = (e)=> {
-        e.preventDefault();
-        alert("Hay que terminarlos");
-    }
+    const handleClick = (socio) => {
+        navigate(`/pagos/registrar-pago`, { state: { socio } });
+    };
 
     //Verifica si hay carga o error
     if( role ==="Empledo"){
@@ -85,6 +83,7 @@ function Pagos() {
                          <th>Nombre</th>
                          <th>Plan</th>
                          <th>Activo</th>
+                         <th></th>
                      </tr>
                  </thead>
                  <tbody>
@@ -95,7 +94,7 @@ function Pagos() {
                              <td>{socio.plan}</td>
                              <td>{socio.activo}</td>
                              <td>
-                                 <button onClick={handleClick}>Seleccionar</button>
+                                <button onClick={() => handleClick(socio)}>Seleccionar</button>
                              </td>
                          </tr>
                      ))}
@@ -113,7 +112,17 @@ function Pagos() {
                 <tbody>
                     {socioLog.map((socio)=>(
                         <tr key={socio.id_pago}>
-                            <td>{new Intl.DateTimeFormat("es-ES", { weekday: "short", day: "2-digit", month: "short", year: "numeric" })
+                            <td>
+                                {new Intl.DateTimeFormat("es-ES", {
+                                    weekday: "short",
+                                    day: "2-digit",
+                                    month: "short",
+                                    year: "numeric",
+                                    hour: "2-digit",
+                                    minute: "2-digit",
+                                    second: "2-digit",
+                                    timeZone: "America/Argentina/Buenos_Aires",
+                                })
                                 .format(new Date(socio.fecha_pago))
                                 .replace(/^\w/, (c) => c.toUpperCase())}
                             </td>

@@ -62,8 +62,9 @@ function CardActividades({ actividad, rol, token, onDeleteActividad }) {
                 <h2 className="actividad-name">{actividad.actividad_name}</h2>
                 <p>Instructor: {actividad.instructor}</p>
                 <p>Horario: {actividad.hora}</p>
-                <p>Dia: {actividad.dia}</p>
-                <p>Cupo Maximo: {actividad.cupo_max}</p>
+                <p>Dia: {actividad.dias}</p>
+                <p>Sesiones: {actividad.sesiones}</p>
+                <p>Cupos disponibles: {actividad.cupo_disp}</p>
                 <h3 className="precio">
                     ${Number(actividad.precio).toLocaleString("es-AR")}
                 </h3>

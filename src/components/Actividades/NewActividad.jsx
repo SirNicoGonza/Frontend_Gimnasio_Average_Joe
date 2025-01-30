@@ -10,8 +10,9 @@ function NewActividad() {
     const [instructor, setInstructor]= useState("");
     const [precio, setPrecio] = useState("");
     const [hora, setHora] = useState("");
-    const [dia, setDia] = useState("");
+    const [dias, setDias] = useState("");
     const [cupo_max, setCupo_max] = useState("");
+    const [sesiones, setSesiones] = useState("");
     const [{data, isError, isLoading}, doFetch] = useFetch(`${import.meta.env.VITE_API_URL}/actividades/`);
 
     const handleSubmit= (e) => {
@@ -22,8 +23,10 @@ function NewActividad() {
             instructor: instructor,
             precio: precio,
             hora: hora,
-            dia: dia,
+            dias: dias,
             cupo_max: cupo_max,
+            cupo_disp: cupo_max,
+            sesiones: sesiones
         });
 
         doFetch({
@@ -71,10 +74,17 @@ function NewActividad() {
                     />
                     <label>Dia:</label>
                     <input 
-                        type="date"
-                        value={dia}
-                        onChange={(e) => setDia(e.target.value)}
+                        type="text"
+                        value={dias}
+                        onChange={(e) => setDias(e.target.value)}
                         required
+                    />
+                    <label>Sesiones: </label>
+                    <input
+                        type="number"
+                        value={sesiones}
+                        onChange={(e) => setSesiones(e.target.value)}
+                        required 
                     />
                     <label>Cupo maximo:</label>
                     <input 

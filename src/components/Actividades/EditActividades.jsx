@@ -13,7 +13,7 @@ function EditActividades() {
     const [instructor, setInstructor]= useState("");
     const [precio, setPrecio] = useState("");
     const [hora, setHora] = useState("");
-    const [dia, setDia] = useState("");
+    const [dias, setDias] = useState("");
     const [cupo_max, setCupo_max] = useState("");
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [error, setError] =useState(null);
@@ -38,7 +38,7 @@ function EditActividades() {
             setNombre(actividadData.nombre || "");
             setInstructor(actividadData.instructor || "");
             setHora(actividadData.hora || "");
-            setDia(actividadData.dia ||"");
+            setDias(actividadData.dias ||"");
             setCupo_max(actividadData.cupo_max || "");
             setPrecio(actividadData.precio || "")
         }
@@ -52,7 +52,7 @@ function EditActividades() {
             instructor: instructor,
             precio: precio,
             hora: hora,
-            dia: dia,
+            dias: dias,
             cupo_max: cupo_max
         });
 
@@ -112,11 +112,11 @@ function EditActividades() {
                         onChange={(e) => setHora(e.target.value)}
                         required
                     />
-                    <label>Dia:</label>
+                    <label>Dias:</label>
                     <input 
-                        type="date"
-                        value={dia}
-                        onChange={(e) => setDia(e.target.value)}
+                        type="text"
+                        value={dias}
+                        onChange={(e) => setDias(e.target.value)}
                         required
                     />
                     <label>Cupo maximo:</label>
