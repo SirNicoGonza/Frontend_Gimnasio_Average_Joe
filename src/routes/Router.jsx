@@ -16,6 +16,7 @@ import EditActividades from "../components/Actividades/EditActividades";
 import Pagos from "../components/Pagos/Pagos";
 import RegistrarPago from "../components/Pagos/RegistrarPago";
 import RegistroAsistencias from "../components/Asistencias/RegistroAsistencias";
+import AsistenciasActividades from "../components/Asistencias/AsistenciasActividades";
 
 const Router = createBrowserRouter([
   {
@@ -116,6 +117,14 @@ const Router = createBrowserRouter([
         element: (
           <ProtectedRoute>
             <RegistroAsistencias />
+          </ProtectedRoute>
+        )
+      },
+      {
+        path: "asistencias/actividades-socio",
+        element: (
+          <ProtectedRoute>
+            <AsistenciasActividades />
           </ProtectedRoute>
         )
       },

@@ -25,20 +25,14 @@ function NavBar({ appName }) {
                 aria-label="main-navigation"
             >
                 <NavMenu
-                    items={[
-                        {text:"Perfil", url:"/perfil"},
-                        {text: "Planes", url: "/planes"},
-                        {text: "Actividades", url: "/actividades"},
-                        {text: "Pagos", url: "/pagos"}
-                    ]}
-                />
-                {role=== "empleado" && (
-                    <NavMenu
                         items={[
+                            {text:"Perfil", url:"/perfil"},
+                            {text: "Planes", url: "/planes"},
+                            {text: "Actividades", url: "/actividades"},
+                            {text: "Pagos", url: "/pagos"},
                             {text:"Asistencias", url: "/asistencias"}
                         ]}
                     />
-                )}
             </nav>
         </header>
     )

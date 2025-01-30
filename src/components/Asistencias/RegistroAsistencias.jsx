@@ -8,6 +8,7 @@ function RegistroAsistencias(){
     const {state} = useAuth();
     const { token, role} = state;
     const [socios, setSocios] = useState([]);
+    const [socioLog, setSocioLog] = useState([]);
     const navigate = useNavigate();
     const [{data, isError, isLoading}, doFetch] = useFetch(`${import.meta.env.VITE_API_URL}/user/socios`,
         {
@@ -25,6 +26,29 @@ function RegistroAsistencias(){
                 setSocios(data.actividades)
             }
         }, [data]);
+    };
+
+    const [{data:dataSocio, isError: isErrorSocio, isLoading: isLoadingSocio}, doFetchSocio] = useFetch(
+        `${import.meta.env.VITE_API_URL}/asistencias/mis-asistencias`,
+        {
+            method: "GET",
+            headers: {
+                Authorization: `Bearer ${token}`,
+                "Content-Type": "application/json",
+            }
+        }
+    );
+
+    if(role==="socio"){
+        useEffect(()=>{
+            doFetchSocio();
+        }, []);
+
+        useEffect(()=>{
+            if(dataSocio?.asistencias){
+                setSocioLog(dataSocio.asistencias)
+            }
+        }, [dataSocio]);
     };
 
     const handleClickAsistenciaGym= async(id_socio) => {
@@ -52,8 +76,11 @@ function RegistroAsistencias(){
             } catch (error) {
                 alert(error.message)
             }
-        }
-
+    };
+    
+    const handleClickActividades = (socio)=> {
+        navigate(`/asistencias/actividades-socio`, { state: { socio } });
+    }
     //
     if(isLoading) return <p>Cargando...</p>;
     if(isError) return <p>Error al cargar los datos de los pagos</p>;
@@ -62,33 +89,40 @@ function RegistroAsistencias(){
         <div>
             <h2>Registro de Asistencias</h2>
             <div>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Apellido</th>
-                            <th>Nombre</th>
-                            <th>Activo</th>
-                            <th>Asistencia</th>
-                            <th></th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {socios.map((socio)=>(
-                            <tr key={socio.id_socio}>
-                                <td>{socio.apellido}</td>
-                                <td>{socio.nombre}</td>
-                                <td>{socio.activo}</td>
-                                <td>
-                                    <button onClick={()=>handleClickAsistenciaGym(socio.id_socio)}>Registrar asistencia</button>
-                                </td>
-                                <td>
-                                    <button onClick={()=>handleClick}>Asistencia a una actividad</button>
-                                </td>
+                {role=== "empleado" &&(
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Apellido</th>
+                                <th>Nombre</th>
+                                <th>Activo</th>
+                                <th>Asistencia</th>
+                                <th></th>
+                                <th></th>
                             </tr>
-                        ))}
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                            {socios.map((socio)=>(
+                                <tr key={socio.id_socio}>
+                                    <td>{socio.apellido}</td>
+                                    <td>{socio.nombre}</td>
+                                    <td>{socio.activo}</td>
+                                    <td>
+                                        <button onClick={()=>handleClickAsistenciaGym(socio.id_socio)}>Registrar asistencia</button>
+                                    </td>
+                                    <td>
+                                        <button onClick={()=>handleClickActividades(socio)}>Ver sus actividad</button>
+                                    </td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                )}
+                {role==="socio" &&(
+                    <table>
+
+                    </table>
+                )}
             </div>
         </div>
     )
