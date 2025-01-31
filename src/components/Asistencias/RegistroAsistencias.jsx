@@ -120,7 +120,20 @@ function RegistroAsistencias(){
                 )}
                 {role==="socio" &&(
                     <table>
-
+                        <thead>
+                            <tr>
+                                <th>Fecha</th>
+                                <th>Tipo de asistencias</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {socioLog.map((socio)=>(
+                                <tr key={socio.id}>
+                                    <th>{socio.fecha}</th>
+                                    <th>{socio.tipo}</th>
+                                </tr>
+                            ))}
+                        </tbody>
                     </table>
                 )}
             </div>
