@@ -1,0 +1,83 @@
+/* NavBar.css */
+
+/* Header */
+header {
+    width: 100%;
+    background-color: #1a1a1a; 
+    padding: 10px 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Contenedor del Header (incluye el título y el botón de logout) */
+.navbar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    border-bottom: 2px solid #1db954;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #1a1a1a;
+    z-index: 100;
+}
+
+/* Estilo del título */
+.title-main {
+    color: #4e9631;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin: 0;
+}
+
+/* Estilo del botón de logout */
+.button-logout {
+    background-color: #1db954;
+    color: black;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.button-logout:hover {
+    background-color: #17a347;
+    transform: scale(1.05);
+}
+
+/* Barra de navegación */
+.navbar {
+    position: fixed;  /* Esto asegura que la barra de navegación esté fija */
+    top: 60px;  /* Ajustamos para que no se solape con el header */
+    left: 0;
+    width: 100%;
+    background-color: #1a1a1a;
+    padding: 10px 0;
+    z-index: 90; /* Asegura que la barra esté por encima de otros elementos */
+}
+
+/* Layout de la página */
+.layout-container {
+    display: flex;
+    flex-direction: column;
+    background-color: #1a1a1a; 
+    color: white;
+    height: 100vh;
+    padding-top: 80px; /* Ajusta el espacio para el header */
+}
+
+.content {
+    flex: 1;
+    overflow-y: auto;
+    padding: 20px;
+    padding-top: 20px;  /* Ajusta este valor según la altura de tu navbar */
+}
+
+.footer {
+    width: 100%;
+    margin-top: auto;
+}

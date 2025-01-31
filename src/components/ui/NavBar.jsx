@@ -15,7 +15,7 @@ function NavBar({ appName }) {
 
     return (
         <header>
-            <div className="header">
+            <div className="navbar-header">
                 <h1 className="title-main">{appName}</h1>
                 <button className="button-logout" onClick={handleClick}>Cerrar sesion</button>       
             </div>

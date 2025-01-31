@@ -1,7 +1,9 @@
+import "../ui/Footer.css";
+
 export default function Footer() {
     return (
-        <footer className="bg-gray-800 text-white py-4">
-            <div className="container mx-auto text-center">
+        <footer className="footer-main">
+            <div className="footer-center-text">
                 &copy; {new Date().getFullYear()} Average Joe - Todos los derechos
                 reservados.
             </div>

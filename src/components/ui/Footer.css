@@ -1,0 +1,17 @@
+/* Footer.css */
+
+.footer-main {
+	background-color: #121212; 
+	color: white;
+	text-align: center;
+	padding: 15px 0;
+	font-size: 1rem;
+	border-top: 2px solid #1db954;
+	position: relative;
+	width: 100%;
+	bottom: 0;
+}
+
+.footer-center-text {
+	margin: 0;
+}

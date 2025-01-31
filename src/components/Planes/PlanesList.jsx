@@ -3,7 +3,7 @@ import { useAuth } from "../../contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
 import CardPlan from "./CardPlan";
 import useFetch from "../../hooks/useFetch";
-import PlanActual from "./PlanActual";
+import "./PlanesList.css";
 
 function PlanesList() {
     const [planes, setPlanes] = useState([]);
@@ -28,13 +28,6 @@ function PlanesList() {
     useEffect(()=> {
         if(data?.planes) {
           setPlanes(data.planes)
-            //const planesTransformado = data.planes.map((planArray) =>({
-            //    id: planArray[0],
-            //    nombre: planArray[1],
-            //    precio: planArray[2],
-            //    descripcion: planArray[3]
-        //}));
-            //setPlanes(planesTransformado);
         }
     }, [data]);
 
@@ -52,23 +45,26 @@ function PlanesList() {
     if(isError) return <p>Error al cargar los planes</p>;
 
     return (
-        <div>
-        {/* Mostrar el plan actual del socio */}
-        {/*role === "socio" && (
-          <div>
-            <h2>Tu plan actual:</h2>
-            <PlanActual />
-          </div>
-        )*/}
-        {/*Mostrar boton de crear plan si es empleado */
-        role=== "empleado" && (
-          <button onClick={handleNuevoPlanClick}>nuevo plan</button>
-        )
-        }
-        {/* Mostrar la lista de planes */}
-        {planes.map((plan) => (
-          <CardPlan key={plan.id_plan} plan={plan} rol={role} isAutheticated={isAuthenticated} token={token} onDeletePlan={handleDeletePlan} />
-        ))}
+      <div className="planeslist-container">
+        {/* Mostrar botón solo si el usuario es empleado */}
+        {role === "empleado" && (
+          <button className="btn-nuevo" onClick={handleNuevoPlanClick}>
+              Nuevo Plan
+          </button>
+        )}
+
+        <div className="planeslist-grid">
+            {planes.map((plan) => (
+                <CardPlan
+                  key={plan.id_plan}
+                  plan={plan}
+                  rol={role}
+                  isAuthenticated={isAuthenticated}
+                  token={token}
+                  onDeletePlan={handleDeletePlan}
+                />
+            ))}
+        </div>
       </div>
     );    
 }
