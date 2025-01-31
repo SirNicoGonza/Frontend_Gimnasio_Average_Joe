@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useAuth } from "../../contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
 import useFetch from "../../hooks/useFetch";
-//import "./Pagos.css";
+import "./Pagos.css";
 
 function Pagos() {
     const [socios, setSocios] = useState([]);
@@ -66,7 +66,7 @@ function Pagos() {
 
     
     return (
-        <div>
+        <div className="div-main-pagos">
             <div>
                 {role ==="empleado" && (
                     <h2>Listado de Socios</h2>
@@ -76,7 +76,7 @@ function Pagos() {
                 <h2>Lista de Pagos</h2>
             )}
             {role === "empleado" && (
-                 <table>
+                 <table className="tabla-pagos">
                  <thead>
                      <tr>
                          <th>Apellido</th>

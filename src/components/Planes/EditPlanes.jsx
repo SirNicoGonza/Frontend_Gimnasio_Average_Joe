@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useAuth } from "../../contexts/AuthContext";
 import useFetch from "../../hooks/useFetch";
+import "./EditPlanes.css";
 
 function EditPlan() {
   const { id } = useParams();
@@ -88,9 +89,9 @@ function EditPlan() {
   if (isErrorPlan) return <p>Error al cargar el plan</p>;
 
   return (
-    <div>
+    <div className="div-main">
       <h1>Editar Plan</h1>
-      <form onSubmit={handleSubmit}>
+      <form className="table-edit" onSubmit={handleSubmit}>
         <div>
           <label>Nombre:</label>
           <input
@@ -135,10 +136,10 @@ function EditPlan() {
                 required
                 />
         </div>
-        <button type="submit" disabled={isSubmitting}>
+        <button className="btnactualizar" type="submit" disabled={isSubmitting}>
           {isSubmitting ? "Actualizando..." : "Actualizar"}
         </button>
-        <button type="button" onClick={()=> navigate("/planes")}>Salir</button>
+        <button className="btn-salir" type="button" onClick={()=> navigate("/planes")}>Salir</button>
       </form>
     </div>
   );
