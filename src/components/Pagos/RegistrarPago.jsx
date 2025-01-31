@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import useFetch from "../../hooks/useFetch";
+import './RegistrarPago.css';
 
 function RegistrarPago() {
     const location = useLocation();
@@ -83,7 +84,7 @@ function RegistrarPago() {
     if (isError) return <p>Error al cargar los datos de los pagos</p>;
 
     return (
-        <div>
+        <div className="main-registrar-pago">
             <h2>Registrar Pago</h2>
             <p><strong>Nombre:</strong> {socio.nombre} {socio.apellido}</p>
             <p><strong>Plan:</strong> {socio.plan}</p>
@@ -94,7 +95,7 @@ function RegistrarPago() {
             </div>
             <div>
                 <h3>Actividades inscriptas</h3>
-                <table>
+                <table className="tabla-registro">
                     <thead>
                         <tr>
                             <th>Nombre</th>
@@ -117,7 +118,7 @@ function RegistrarPago() {
                                     <td>{actividad.sesiones}</td>
                                     <td>{actividad.precio}</td>
                                     <td>
-                                        <button onClick={() => handlePagoActividad(actividad.id_actividad, actividad.actividad_name)}>
+                                        <button className="btn-registrar-pago" onClick={() => handlePagoActividad(actividad.id_actividad, actividad.actividad_name)}>
                                             Registrar Pago
                                         </button>
                                     </td>
@@ -131,9 +132,9 @@ function RegistrarPago() {
                     </tbody>
                 </table>
             </div>
-            <button onClick={handleVolver}>Volver</button>
+            <button className="btnvolver" onClick={handleVolver}>Volver</button>
         </div>
     );
 }
 
-export default RegistrarPago;
+export default RegistrarPago; 
