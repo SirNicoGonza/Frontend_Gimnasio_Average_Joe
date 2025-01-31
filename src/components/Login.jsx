@@ -3,7 +3,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import useFetch from '../hooks/useFetch';
 import { useAuth } from '../contexts/AuthContext';
 import { Link } from 'react-router-dom';
-import './Estilo.css';
+import '/fronted/login.css';
 
 function Login() {
   const [email, setEmail] = useState('');
