@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import "./CardActividades.css";
 
 function CardActividades({ actividad, rol, token, onDeleteActividad }) {
     const id = actividad.id_actividad;

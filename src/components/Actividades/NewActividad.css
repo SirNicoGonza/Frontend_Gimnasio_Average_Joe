@@ -1,0 +1,108 @@
+/* NewActividad.css */
+
+.main-new-actividad {
+    background-color: #2c2c2c;
+    color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    width: 100%;
+    max-width: 600px;
+    margin: 20px auto;
+    font-family: 'Arial', sans-serif;
+}
+
+.main-new-actividad h2 {
+    font-size: 2rem;
+    color: #4e9631;
+    margin-bottom: 20px;
+    font-family: 'Bebas Neue', sans-serif;
+}
+
+.main-new-actividad label {
+    font-size: 1.1rem;
+    margin-bottom: 5px;
+    display: block;
+}
+
+.main-new-actividad input[type="text"],
+.main-new-actividad input[type="time"],
+.main-new-actividad input[type="number"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    background-color: #333;
+    color: white;
+    border: 1px solid #555;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+.main-new-actividad input[type="text"]:focus,
+.main-new-actividad input[type="time"]:focus,
+.main-new-actividad input[type="number"]:focus {
+    outline: none;
+    border-color: #17a347;
+}
+
+.main-new-actividad button {
+    background-color: #1db954;
+    color: black;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.main-new-actividad button:hover {
+    background-color: #17a347;
+    transform: scale(1.05);
+}
+
+.main-new-actividad button[type="button"] {
+    background-color: #888;
+    margin-left: 10px;
+}
+
+.main-new-actividad button[type="button"]:hover {
+    background-color: #666;
+}
+
+.main-new-actividad p {
+    background-color: red;
+    color: white;
+    padding: 10px;
+    margin-top: 20px;
+    font-size: 1.1rem;
+    border-radius: 5px;
+}
+
+@media (max-width: 768px) {
+    .main-new-actividad {
+        padding: 15px;
+    }
+
+    .main-new-actividad h2 {
+        font-size: 1.6rem;
+    }
+
+    .main-new-actividad input[type="text"],
+    .main-new-actividad input[type="time"],
+    .main-new-actividad input[type="number"] {
+        padding: 12px;
+    }
+
+    .main-new-actividad button {
+        width: 100%;
+        padding: 12px;
+    }
+
+    .main-new-actividad button[type="button"] {
+        width: 100%;
+        margin-left: 0;
+        margin-top: 10px;
+    }
+}

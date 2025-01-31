@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../contexts/AuthContext";
 import useFetch from "../../hooks/useFetch";
+import "./NewActividad.css";
 
 function NewActividad() {
     const {token} = useAuth();
@@ -47,7 +48,7 @@ function NewActividad() {
     }, [data, navigate, nombre]);
 
     return (
-        <div>
+        <div className="main-new-actividad">
             <h2>Nueva Actividad</h2>
             <form onSubmit={handleSubmit}>
                 <div>
