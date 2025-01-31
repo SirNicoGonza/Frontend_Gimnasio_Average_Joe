@@ -1,0 +1,35 @@
+/* PlanesList.css */
+
+.planeslist-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    padding: 20px;
+    background-color: #303030;
+    min-height: 100vh;
+}
+
+.btn-nuevo {
+    background-color: #1db954;
+    color: black;
+    font-size: 1rem;
+    font-weight: bold;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.btn-nuevo:hover {
+    background-color: #17a746;
+}
+
+.planeslist-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    width: 100%;
+}

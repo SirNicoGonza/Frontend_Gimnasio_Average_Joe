@@ -1,0 +1,33 @@
+/* NavMenu.css */
+
+.navbar-menu {
+	background-color: #121212; /* Fondo oscuro */
+	padding: 10px 20px;
+	display: flex;
+	justify-content: center;
+	padding-top: 60px; 
+}
+
+.navbar-start {
+	display: flex;
+	gap: 15px;
+}
+
+.navbar-item {
+	color: white;
+	text-decoration: none;
+	padding: 8px 12px;
+	border-radius: 5px;
+	transition: background-color 0.3s, color 0.3s;
+}
+
+.navbar-item:hover {
+	background-color: #1db954; /* Verde brillante */
+	color: black;
+}
+
+.active {
+	background-color: #1db954; /* Verde cuando está activo */
+	color: black;
+	font-weight: bold;
+}

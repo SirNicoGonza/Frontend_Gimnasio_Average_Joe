@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import "./CardPlan.css";
 
 function CardPlan({ plan, rol, isAuthenticated, token, onDeletePlan }) { 
   const id = plan.id_plan;
@@ -71,8 +72,8 @@ function CardPlan({ plan, rol, isAuthenticated, token, onDeletePlan }) {
 
       {userType === "empleado" && (
         <div>
-          <button onClick={handleEditPlan}>Editar</button>
-          <button onClick={handleDeletePlan}>Eliminar</button>
+          <button className="btneditar" onClick={handleEditPlan}>Editar</button>
+          <button className= "btneliminar" onClick={handleDeletePlan}>Eliminar</button>
         </div>
       )}
     </div>
